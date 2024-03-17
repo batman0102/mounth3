@@ -45,4 +45,3 @@ async def about_cinema(callback: types.CallbackQuery):
 async def book_tickets(callback: types.CallbackQuery):
     await callback.message.answer("Выберите фильм и сеанс для бронирования билетов")
 
-
