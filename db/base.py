@@ -3,7 +3,7 @@ from pathlib import Path
 
 class Database:
     def __init__(self) -> None:
-        db_path = Path(__file__).parent / "movies.sqlite"
+        db_path = Path(__file__).parent.parent / "list.sqlite"
         self.db = sqlite3.connect(db_path)
         self.cursor = self.db.cursor()
 
