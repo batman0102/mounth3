@@ -1,13 +1,14 @@
 from aiogram import Router, types
 from aiogram.filters import Command
-from db.base import Database
+from bot import *
 
 list_movies = Router()
-@list_movies.message(Command("movies"))
+
+@list_movies.message(Command("list"))
 async def show_movies(message: types.Message):
-    movies = Database.get_all_movies()
+    movies = db.get_all_movies()
     if movies:
-        response = '\n'.join([f"{movie[1]} - {movie[2]}" for movie in movies])
+        response = '\n'.join([f"{movie[1]} - {movie[2]} - {movie[3]}" for movie in movies])
     else:
         response = "Список фильмов пуст."
     await message.answer(response)
