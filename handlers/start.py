@@ -3,6 +3,7 @@ from aiogram import types, Router, F
 from aiogram.filters import Command
 from db.base import *
 from bot import *
+from crawler.cinema import *
 
 start_router = Router()
 
@@ -33,6 +34,9 @@ async def start(message: types.Message):
             ],
             [
                 types.InlineKeyboardButton(text="Комедия", callback_data="genre_comedy")
+            ],
+            [
+                types.InlineKeyboardButton(text="Аниме", callback_data="anime")
             ]
         ]
     )
@@ -73,3 +77,16 @@ async def space_movies(callback: types.CallbackQuery):
     else:
         response = "Список фильмов пуст."
     await callback.message.answer(response)
+
+crawler = AnimeSpiritCrawler()
+
+@start_router.callback_query(F.data == "anime")
+async def anime_https(callback: types.CallbackQuery):
+    anime_links = crawler.get_anime_links()
+    if anime_links:
+        for link in anime_links:
+            await callback.message.answer(link)
+    else:
+        await callback.message.answer("Ссылки на аниме не найдены.")
+    await callback.answer()
+

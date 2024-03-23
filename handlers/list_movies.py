@@ -1,6 +1,6 @@
 from aiogram import Router, types
 from aiogram.filters import Command
-from bot import *
+from bot import db
 
 list_movies = Router()
 
