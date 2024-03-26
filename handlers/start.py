@@ -1,7 +1,6 @@
 import logging
 from aiogram import types, Router, F
 from aiogram.filters import Command
-from db.base import *
 from bot import *
 from crawler.cinema import *
 
@@ -82,11 +81,7 @@ crawler = AnimeSpiritCrawler()
 
 @start_router.callback_query(F.data == "anime")
 async def anime_https(callback: types.CallbackQuery):
-    anime_links = crawler.get_anime_links()
-    if anime_links:
-        for link in anime_links:
-            await callback.message.answer(link)
-    else:
-        await callback.message.answer("Ссылки на аниме не найдены.")
-    await callback.answer()
+    links = await crawler.get_anime_data()
+    for link in links:
+        await callback.message.answer(link)
 
