@@ -5,7 +5,7 @@ from aiogram.filters import Command
 
 pic_router = Router()
 
-@pic_router.message(Command("random_pic"))
+@pic_router.message(Command("pic"))
 async def send_random_pic(message: types.Message):
     images_folder = 'images'
     random_image_name = random.choice(os.listdir(images_folder))

@@ -1,18 +1,12 @@
 import asyncio
 import logging
-from aiogram import Bot
 
-from bot import dp,bot, db
+from bot import dp,bot, db, on_startup
 from handlers.start import start_router
 from handlers.myinfo import myinfo_router
 from handlers.random_pic import pic_router
 from handlers.survey import survey_router
 from handlers.list_movies import list_movies
-
-async def on_startup(bot: Bot):
-    db.drop_tables()
-    db.create_tables()
-    db.populate_tables()
 
 async def main():
     dp.include_router(start_router)
