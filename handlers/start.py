@@ -40,11 +40,11 @@ async def start(message: types.Message):
         ]
     )
     logging.info(message.from_user)
-    await message.answer(f"Привет, {message.from_user.first_name}! Добро пожаловать в наш кинобот.", reply_markup=kb)
+    await message.answer(f"Привет, {message.from_user.first_name}! Добро пожаловать в наш кинобот «Broadway».", reply_markup=kb)
 
 @start_router.callback_query(F.data == "about_cinema")
 async def about_cinema(callback: types.CallbackQuery):
-    await callback.message.answer("Информация о кинотеатре")
+    await callback.message.answer("КИНОТЕАТР «Broadway» - один из самых больших кинокомплексов Кыргызстана! Новый, современный кинотеатр, 7 кинозалами, рассчитанный на 805 мест, также вы можете насладиться первым VIP залом отличающимся своей комфортабельностью. ")
 
 @start_router.callback_query(F.data == "book_tickets")
 async def book_tickets(callback: types.CallbackQuery):
@@ -82,6 +82,5 @@ crawler = AnimeSpiritCrawler()
 @start_router.callback_query(F.data == "anime")
 async def anime_https(callback: types.CallbackQuery):
     links = await crawler.get_anime_data()
-    for link in links:
-        await callback.message.answer(link)
+    await callback.message.answer(links)
 

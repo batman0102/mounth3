@@ -19,5 +19,6 @@ async def on_startup(bot: Bot):
         types.BotCommand(command="/start", description="Начало"),
         types.BotCommand(command="/pic", description="Показать картинку"),
         types.BotCommand(command="/survey", description="Пройти опрос"),
-        types.BotCommand(command="/myinfo", description="Информация обо мне")
+        types.BotCommand(command="/myinfo", description="Информация обо мне"),
+        types.BotCommand(command="/list", description="Список фильмов")
     ])

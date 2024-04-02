@@ -44,9 +44,9 @@ async def process_sex(callback_query: types.CallbackQuery, state: FSMContext):
     await state.set_state(Survey.genre)
     kb = types.InlineKeyboardMarkup(
         inline_keyboard=[
-            [types.InlineKeyboardButton(text="Боевик", callback_data="genre_action")],
-            [types.InlineKeyboardButton(text="Комедия", callback_data="genre_comedy")],
-            [types.InlineKeyboardButton(text="Драма", callback_data="genre_drama")]
+            [types.InlineKeyboardButton(text="Боевик", callback_data="action")],
+            [types.InlineKeyboardButton(text="Комедия", callback_data="comedy")],
+            [types.InlineKeyboardButton(text="Драма", callback_data="drama")]
         ]
     )
     await callback_query.message.answer("Какой ваш любимый жанр фильмов?", reply_markup=kb)
